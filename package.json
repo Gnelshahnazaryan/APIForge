@@ -1,8 +1,8 @@
 {
-  "name": "project-structure-generator",
+  "name": "create-backend-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "CLI to scaffold a Node.js backend project with Express, database, auth and more",
+  "main": "lib/cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,6 +14,10 @@
     "create-backend-app": "./bin/create-backend-app.js"
   },
   "dependencies": {
-    "inquirer": "^8.2.7"
+    "@clack/prompts": "^1.8.1",
+    "picocolors": "^1.1.1"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
   }
 }

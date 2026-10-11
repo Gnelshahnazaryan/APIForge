@@ -1,3 +1,5 @@
 #!/usr/bin/env node
 
-require("../lib/index");
+const { run, fail } = require("../lib/cli");
+
+run().catch((err) => fail(err.message));
