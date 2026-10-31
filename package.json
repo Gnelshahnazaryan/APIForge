@@ -1,20 +1,25 @@
 {
-  "name": "create-backend-app",
+  "name": "api-forge",
   "version": "1.0.0",
   "description": "CLI to scaffold a Node.js backend project with Express, database, auth and more",
   "main": "lib/cli.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test test/scaffolding.test.js",
+    "test:generator": "node --test test/scaffolding.test.js",
+    "test:integration": "node --test test/integration.test.js",
+    "test:database": "node --test test/database.integration.test.js",
+    "test:features": "node --test test/features.generator.test.js test/features.integration.test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bin": {
-    "create-backend-app": "./bin/create-backend-app.js"
+    "apiforge": "./bin/api-forge.js"
   },
   "dependencies": {
     "@clack/prompts": "^1.8.1",
+    "figlet": "^1.12.0",
     "picocolors": "^1.1.1"
   },
   "engines": {
