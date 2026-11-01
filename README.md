@@ -49,7 +49,7 @@ Before using APIForge, make sure you have:
 Install APIForge globally using npm:
 
 ```bash
-npm install -g api-forge
+npm install -g forge-api-cli
 ```
 
 Verify the installation:

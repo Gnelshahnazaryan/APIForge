@@ -1,5 +1,5 @@
 {
-  "name": "api-forge",
+  "name": "forge-api-cli",
   "version": "0.1.0",
   "description": "CLI to scaffold a Node.js backend project with Express, database, auth and more",
   "keywords": [
