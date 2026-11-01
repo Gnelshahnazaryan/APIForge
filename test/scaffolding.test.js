@@ -345,15 +345,34 @@ test("generates a constant for every HTTP error code used by the error classes",
 });
 
 test("shows CLI help without starting the project prompts", () => {
-    const result = spawnSync(
-        process.execPath,
-        ["bin/api-forge.js", "--help"],
-        { encoding: "utf8" }
-    );
+    const result = spawnSync(process.execPath, ["bin/api-forge.js", "--help"], { encoding: "utf8" });
+    const output = result.stdout.replace(/\u001B\[[0-9;]*m/g, "");
 
     assert.equal(result.status, 0, result.stderr);
-    assert.match(result.stdout, /Usage:\s+forge \[project-name\]/);
-    assert.match(result.stdout, /-h, --help\s+Show this help message/);
-    assert.match(result.stdout, /forge my-api/);
-    assert.doesNotMatch(result.stdout, /Database/);
+    assert.match(output, /Usage:\s+apiforge \[project-name\] \[options\]/);
+    assert.match(output, /-h, --help\s+Show this help message/);
+    assert.match(output, /-v, --version\s+Show the version number/);
+    assert.match(output, /apiforge my-api/);
+    assert.match(output, /Database\s+MongoDB, PostgreSQL, MySQL, SQLite or none/);
+    // The intro is only shown when a project is really being created
+    assert.doesNotMatch(output, /Let's build your backend/);
+});
+
+test("prints the version with --version and -v", () => {
+    const { version } = require("../package.json");
+
+    for (const flag of ["--version", "-v"]) {
+        const result = spawnSync(process.execPath, ["bin/api-forge.js", flag], { encoding: "utf8" });
+
+        assert.equal(result.status, 0, result.stderr);
+        assert.equal(result.stdout.trim(), version);
+    }
+});
+
+test("rejects unknown options and points to --help", () => {
+    const result = spawnSync(process.execPath, ["bin/api-forge.js", "--nope"], { encoding: "utf8" });
+
+    assert.equal(result.status, 1);
+    assert.match(result.stdout + result.stderr, /Unknown option "--nope"/);
+    assert.match(result.stdout + result.stderr, /apiforge --help/);
 });

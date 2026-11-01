@@ -1,21 +1,47 @@
 {
   "name": "api-forge",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "CLI to scaffold a Node.js backend project with Express, database, auth and more",
+  "keywords": [
+    "cli",
+    "scaffold",
+    "generator",
+    "boilerplate",
+    "express",
+    "nodejs",
+    "backend",
+    "api",
+    "prisma",
+    "drizzle",
+    "mongodb",
+    "postgresql"
+  ],
+  "homepage": "https://github.com/Gnelshahnazaryan/APIForge#readme",
+  "bugs": {
+    "url": "https://github.com/Gnelshahnazaryan/APIForge/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gnelshahnazaryan/APIForge.git"
+  },
+  "license": "MIT",
+  "author": "Gnel Shahnazaryan gshahnazaryan08@gmail.com",
+  "type": "commonjs",
   "main": "lib/cli.js",
+  "bin": {
+    "apiforge": "./bin/api-forge.js"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
   "scripts": {
     "test": "node --test test/scaffolding.test.js",
     "test:generator": "node --test test/scaffolding.test.js",
     "test:integration": "node --test test/integration.test.js",
     "test:database": "node --test test/database.integration.test.js",
-    "test:features": "node --test test/features.generator.test.js test/features.integration.test.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bin": {
-    "apiforge": "./bin/api-forge.js"
+    "test:features": "node --test test/features.generator.test.js test/features.integration.test.js",
+    "prepublishOnly": "npm test"
   },
   "dependencies": {
     "@clack/prompts": "^1.8.1",
